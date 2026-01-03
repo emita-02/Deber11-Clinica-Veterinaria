@@ -71,7 +71,7 @@ public class VeterinariaController {
     @PostMapping("/mascotas/nuevaMascota")
     public ResponseEntity<Mascota> registrarNuevaMascota(@RequestBody Mascota masc){
         listaMascotas.add(masc);
-        System.out.println("✅Nuevo libro registrado.");
+        System.out.println("✅Nueva mascota registrada.");
         System.out.println("Nombre: "+masc.getNombre());
         System.out.println("Especie: "+masc.getEspecie());
         System.out.println("Fecha de Nacimiento: "+masc.getFechaNacimiento());
