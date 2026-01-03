@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +18,11 @@ public class VeterinariaController {
     private List<Mascota> listaMascotas = new ArrayList<>();
 
     public VeterinariaController(){
-        listaMascotas.add(new Mascota(1L, "Luna", "Perro", "12/05/2021", "Andrea Gómez"));
-        listaMascotas.add(new Mascota(2L, "Kitty", "Gato", "03/11/2020", "Alison Mora"));
-        listaMascotas.add(new Mascota(3L, "Mailo", "Perro", "02/11/2012", "Paulethe Pazmiño"));
-        listaMascotas.add(new Mascota(4L, "Kiara", "Tortuga", "18/07/2019", "Diego Herrera"));
-        listaMascotas.add(new Mascota(5L, "Nala", "Hamster", "21/08/2023", "Mariana López"));
+        listaMascotas.add(new Mascota(1L, "Luna", "Perro", LocalDate.of(2021,5,12), "Andrea Gómez"));
+        listaMascotas.add(new Mascota(2L, "Kitty", "Gato", LocalDate.of(2024,11,3), "Alison Mora"));
+        listaMascotas.add(new Mascota(3L, "Mailo", "Perro", LocalDate.of(2015,11,2), "Paulethe Pazmiño"));
+        listaMascotas.add(new Mascota(4L, "Kiara", "Tortuga", LocalDate.of(2019,7,18), "Diego Herrera"));
+        listaMascotas.add(new Mascota(5L, "Nala", "Hamster", LocalDate.of(2023,8,21), "Mariana López"));
     }
 
     //1. Devolver todas las mascotas registradas en la clinica usnado @ResponseEntity
@@ -48,5 +50,20 @@ public class VeterinariaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    //3. Devolver las mascotas menores a la edad que se ingrese usando @RequestParam
+    @GetMapping("/mascotas/menores")
+    public ResponseEntity<List<Mascota>> devolverMascotaMenor(@RequestParam int edad){
+        List<Mascota> mascotaResultado = new ArrayList<>();
 
+        for (Mascota m : listaMascotas){
+
+            int edadMascota = Period.between(m.getFechaNacimiento(), LocalDate.now()).getYears();
+
+            if (edadMascota < edad){
+                mascotaResultado.add(m);
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(mascotaResultado);
+    }
 }
