@@ -66,4 +66,18 @@ public class VeterinariaController {
 
         return ResponseEntity.status(HttpStatus.OK).body(mascotaResultado);
     }
+
+    //4. Registrar una nueva mascota usando @RequestBody
+    @PostMapping("/mascotas/nuevaMascota")
+    public ResponseEntity<Mascota> registrarNuevaMascota(@RequestBody Mascota masc){
+        listaMascotas.add(masc);
+        System.out.println("✅Nuevo libro registrado.");
+        System.out.println("Nombre: "+masc.getNombre());
+        System.out.println("Especie: "+masc.getEspecie());
+        System.out.println("Fecha de Nacimiento: "+masc.getFechaNacimiento());
+        System.out.println("Propietario: "+masc.getPropietario());
+
+        //Devuelve codigo 201 y libro en el cuerpo
+        return ResponseEntity.status(HttpStatus.CREATED).body(masc);
+    }
 }
