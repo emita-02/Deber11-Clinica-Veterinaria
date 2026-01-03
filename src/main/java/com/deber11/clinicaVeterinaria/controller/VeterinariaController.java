@@ -1,7 +1,9 @@
 package com.deber11.clinicaVeterinaria.controller;
 
 import com.deber11.clinicaVeterinaria.model.Mascota;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -21,5 +23,10 @@ public class VeterinariaController {
         listaMascotas.add(new Mascota(5L, "Nala", "Hamster", "21/08/2023", "Mariana López"));
     }
 
-
+    //1. Devolver todas las mascotas registradas en la clinica
+    @GetMapping("/mascotas")
+    @ResponseBody
+    public List<Mascota> devolverLibros(){
+        return listaMascotas;
+    }
 }
