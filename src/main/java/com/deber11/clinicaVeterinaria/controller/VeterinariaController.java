@@ -1,11 +1,14 @@
 package com.deber11.clinicaVeterinaria.controller;
 
 import com.deber11.clinicaVeterinaria.model.Mascota;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +26,17 @@ public class VeterinariaController {
         listaMascotas.add(new Mascota(5L, "Nala", "Hamster", "21/08/2023", "Mariana López"));
     }
 
-    //1. Devolver todas las mascotas registradas en la clinica
+    //1. Devolver todas las mascotas registradas en la clinica usnado @ResponseEntity
     @GetMapping("/mascotas")
-    @ResponseBody
-    public List<Mascota> devolverLibros(){
-        return listaMascotas;
+    public ResponseEntity<List<Mascota>> devolverMascota(){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header("Content-Type", "application/json")
+                .header("Cache-Control", "no-cache")
+                .header("X-App-Version", "1.0")
+                .header("X-Response-Time", LocalDateTime.now().toString())
+                .body(listaMascotas);
     }
+
+    //2.
 }
