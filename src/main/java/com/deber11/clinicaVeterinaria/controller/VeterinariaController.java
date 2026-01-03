@@ -3,10 +3,7 @@ package com.deber11.clinicaVeterinaria.controller;
 import com.deber11.clinicaVeterinaria.model.Mascota;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,5 +35,18 @@ public class VeterinariaController {
                 .body(listaMascotas);
     }
 
-    //2.
+    //2. Devolver una mascota por su id usando @PathVariable
+    @GetMapping("/mascotaID/{id}")
+    public ResponseEntity<Mascota> devolverMascotaPorID(@PathVariable Long id){
+        for (Mascota l : listaMascotas){
+            if (l.getId().equals(id)){
+                return ResponseEntity.status(HttpStatus.OK).body(l);
+            }
+        }
+
+        //Si no hay resultado devolver ResponseEntity con 404
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+
 }
