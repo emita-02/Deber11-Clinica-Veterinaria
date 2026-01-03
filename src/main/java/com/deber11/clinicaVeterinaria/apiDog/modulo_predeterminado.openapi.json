@@ -1,0 +1,215 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Clinica veterinaria",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/veterinaria/mascotas": {
+      "get": {
+        "summary": "Mostrar todas las mascotas",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "nombre": "Luna",
+                    "especie": "Perro",
+                    "fechaNacimiento": "12/05/2021",
+                    "propietario": "Andrea Gómez"
+                  },
+                  {
+                    "id": 2,
+                    "nombre": "Kitty",
+                    "especie": "Gato",
+                    "fechaNacimiento": "03/11/2020",
+                    "propietario": "Alison Mora"
+                  },
+                  {
+                    "id": 3,
+                    "nombre": "Mailo",
+                    "especie": "Perro",
+                    "fechaNacimiento": "02/11/2012",
+                    "propietario": "Paulethe Pazmiño"
+                  },
+                  {
+                    "id": 4,
+                    "nombre": "Kiara",
+                    "especie": "Tortuga",
+                    "fechaNacimiento": "18/07/2019",
+                    "propietario": "Diego Herrera"
+                  },
+                  {
+                    "id": 5,
+                    "nombre": "Nala",
+                    "especie": "Hamster",
+                    "fechaNacimiento": "21/08/2023",
+                    "propietario": "Mariana López"
+                  }
+                ]
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/veterinaria/mascotaID/1": {
+      "get": {
+        "summary": "Mostrar Mascota por ID",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": {
+                  "id": 1,
+                  "nombre": "Luna",
+                  "especie": "Perro",
+                  "fechaNacimiento": "12/05/2021",
+                  "propietario": "Andrea Gómez"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/veterinaria/mascotas/menores": {
+      "get": {
+        "summary": "Mostrar mascota menor a la edad",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "edad",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": 5,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "nombre": "Luna",
+                    "especie": "Perro",
+                    "fechaNacimiento": "2021-05-12",
+                    "propietario": "Andrea Gómez"
+                  },
+                  {
+                    "id": 2,
+                    "nombre": "Kitty",
+                    "especie": "Gato",
+                    "fechaNacimiento": "2024-11-03",
+                    "propietario": "Alison Mora"
+                  },
+                  {
+                    "id": 5,
+                    "nombre": "Nala",
+                    "especie": "Hamster",
+                    "fechaNacimiento": "2023-08-21",
+                    "propietario": "Mariana López"
+                  }
+                ]
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/veterinaria/mascotas/nuevaMascota": {
+      "post": {
+        "summary": "Registrar nueva mascota",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "id": 6,
+                "nombre": "Rocky",
+                "especie": "Conejo",
+                "fechaNacimiento": "2022-02-05",
+                "propietario": "Sofia Martínez"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": {
+                  "id": 6,
+                  "nombre": "Rocky",
+                  "especie": "Conejo",
+                  "fechaNacimiento": "2022-02-05",
+                  "propietario": "Sofia Martínez"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {}
+  },
+  "servers": []
+}
